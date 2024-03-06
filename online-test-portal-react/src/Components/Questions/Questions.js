@@ -1,5 +1,6 @@
 let questions = [
   {
+    id: 1,
     question:
       "Which of the following software could assist someone who cannot use their hands for computer input ?",
     options: {
@@ -11,6 +12,7 @@ let questions = [
   },
 
   {
+    id: 2,
     question:
       "The software tools that enable a user to interact with a computer for specific purposes are known as ?",
     options: {
@@ -22,6 +24,7 @@ let questions = [
   },
 
   {
+    id: 3,
     question: "The basic computer processing cycle consists of",
     options: {
       opt1: "input, processing and output",
@@ -32,6 +35,7 @@ let questions = [
   },
 
   {
+    id: 4,
     question: "System software ?",
     options: {
       opt1: "allows the user to diagnose and troubleshoot the device ",
@@ -42,6 +46,7 @@ let questions = [
   },
 
   {
+    id: 5,
     question: "This can be another word for program ?",
     options: {
       opt1: "software ",
@@ -52,6 +57,7 @@ let questions = [
   },
 
   {
+    id: 6,
     question:
       "Which of the following software could assist someone who cannot use their hands for computer input ?",
     options: {
@@ -63,6 +69,7 @@ let questions = [
   },
 
   {
+    id: 7,
     question:
       "The software tools that enable a user to interact with a computer for specific purposes are known as ?",
     options: {
@@ -74,6 +81,7 @@ let questions = [
   },
 
   {
+    id: 8,
     question: "The basic computer processing cycle consists of",
     options: {
       opt1: "input, processing and output",
@@ -84,6 +92,7 @@ let questions = [
   },
 
   {
+    id: 9,
     question: "System software ?",
     options: {
       opt1: "allows the user to diagnose and troubleshoot the device ",
@@ -94,6 +103,7 @@ let questions = [
   },
 
   {
+    id: 10,
     question: "This can be another word for program ?",
     options: {
       opt1: "software ",
@@ -103,3 +113,5 @@ let questions = [
     },
   },
 ];
+
+export default questions;
