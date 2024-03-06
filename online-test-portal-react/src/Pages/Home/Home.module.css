@@ -5,14 +5,13 @@
   justify-content: space-evenly;
 }
 
-.questionContainer{
+.questionContainer {
   /* display:flex; */
   width: 50%;
-  margin:0px 20px;
-  border:2px solid gray;
+  margin: 0px 20px;
+  border: 2px solid gray;
   border-radius: 5px;
   padding: 25px;
-
 }
 
 .question {
@@ -30,8 +29,8 @@
   justify-content: start;
   align-items: center;
   flex-wrap: wrap;
-  width: 40%;  
-  border:2px solid grey;
+  width: 40%;
+  border: 2px solid grey;
   border-radius: 5px;
   padding: 20px;
 }
