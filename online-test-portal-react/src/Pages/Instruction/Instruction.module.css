@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: start;
+    text-align: start;
+    margin: 10rem;
+    min-height: 100vh; /* Ensure viewport height coverage */
+    padding: 1px;
+  }
+  
+  .instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* text-align: justify; */
+    margin-bottom: 1px;
+    border: solid black 1px;
+    margin-left: 1rem;
+  } 
+
+  .instructions h4 {
+    margin-left: 2rem;
+  } 
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0;
+  }
+  

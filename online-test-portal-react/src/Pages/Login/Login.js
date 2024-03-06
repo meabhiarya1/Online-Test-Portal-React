@@ -26,7 +26,7 @@ const Login = () => {
     console.log(UserRef.current.value, PassRef.current.value);
     UserRef.current.value = "";
     PassRef.current.value = "";
-    navigate("/home");
+    navigate("/instruction");
   };
 
   return (

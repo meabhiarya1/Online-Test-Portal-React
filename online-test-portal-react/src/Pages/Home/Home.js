@@ -28,53 +28,56 @@ const Home = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div key={currentQuestion.id} className={styles.question}>
-        <div className={styles.questionText}>{currentQuestion.question}</div>
+    <>
+      <div className={styles.container}>
+        <div key={currentQuestion.id} className={styles.question}>
+          <div className={styles.questionText}>{currentQuestion.question}</div>
 
-        <div className={styles.options}>
-          <div className={styles.option}>
-            <input type="radio" name={currentQuestion.id} />
-            <label>{currentQuestion.options.opt1} </label>
-          </div>
-          <div className={styles.option}>
-            <input type="radio" name={currentQuestion.id} />
-            <label>{currentQuestion.options.opt2}</label>
-          </div>
-          <div className={styles.option}>
-            <input type="radio" name={currentQuestion.id} />
-            <label>{currentQuestion.options.opt3}</label>
-          </div>
-          <div className={styles.option}>
-            <input type="radio" name={currentQuestion.id} />
-            <label>{currentQuestion.options.opt4}</label>
+          <div className={styles.options}>
+            <div className={styles.option}>
+              <input type="radio" name={currentQuestion.id} />
+              <label>{currentQuestion.options.opt1} </label>
+            </div>
+            <div className={styles.option}>
+              <input type="radio" name={currentQuestion.id} />
+              <label>{currentQuestion.options.opt2}</label>
+            </div>
+            <div className={styles.option}>
+              <input type="radio" name={currentQuestion.id} />
+              <label>{currentQuestion.options.opt3}</label>
+            </div>
+            <div className={styles.option}>
+              <input type="radio" name={currentQuestion.id} />
+              <label>{currentQuestion.options.opt4}</label>
+            </div>
           </div>
         </div>
+        <div className={styles.buttonContainer}>
+          <button
+            style={{ background: "green" }}
+            className={styles.button}
+            onClick={handlePrev}
+          >
+            Prev
+          </button>
+          <button
+            style={{ background: "orange" }}
+            className={styles.button}
+            onClick={handleNext}
+          >
+            Skip
+          </button>
+          <button
+            style={{ background: "blue" }}
+            className={styles.button}
+            onClick={handleNext}
+          >
+            Next
+          </button>
+        </div>
       </div>
-      <div className={styles.buttonContainer}>
-        <button
-          style={{ background: "green" }}
-          className={styles.button}
-          onClick={handlePrev}
-        >
-          Prev
-        </button>
-        <button
-          style={{ background: "orange" }}
-          className={styles.button}
-          onClick={handleNext}
-        >
-          Skip
-        </button>
-        <button
-          style={{ background: "blue" }}
-          className={styles.button}
-          onClick={handleNext}
-        >
-          Next
-        </button>
-      </div>
-    </div>
+      <div>hello</div>
+    </>
   );
 };
 
