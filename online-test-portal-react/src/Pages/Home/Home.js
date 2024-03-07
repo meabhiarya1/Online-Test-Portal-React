@@ -119,32 +119,21 @@ const Home = () => {
 
           {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
-            <div>
-              <Button
-                // className={styles.button}
-                handleFunc={handlePrev}
-              >
-                Prev
-              </Button>
+            <div style={{ background: "green  " }} className={styles.button}>
+              <Button handleFunc={handlePrev}>Prev</Button>
             </div>
 
-            <div style={{ background: "orange" }} className={styles.button} >
+            <div style={{ background: "orange" }} className={styles.button}>
               <Button handleFunc={handleSkip}>Skip</Button>
             </div>
 
-            {!selected ? (
-              <Button style={{ background: "blue" }} className={styles.button}>
-                Next
-              </Button>
-            ) : (
-              <Button
-                style={{ background: "blue" }}
-                className={styles.button}
-                handleFunc={handleNext}
-              >
-                Next
-              </Button>
-            )}
+            <div style={{ background: "blue" }} className={styles.button}>
+              {!selected ? (
+                <Button>Next</Button>
+              ) : (
+                <Button handleFunc={handleNext}>Next</Button>
+              )}
+            </div>
           </div>
         </div>
 
