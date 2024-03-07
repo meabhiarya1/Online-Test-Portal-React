@@ -26,13 +26,13 @@
 
 .indicator {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 40%;
+  width: 30%;
   border: 2px solid grey;
   border-radius: 5px;
-  padding: 20px;
+  padding: 35px;
 }
 
 .indicatorDiv {
@@ -40,7 +40,7 @@
   width: 30px;
   height: 30px;
   margin: 5px;
-  background-color: red;
+  /* background-color: red; */
   border-radius: 5px;
   justify-content: center;
   color: white;

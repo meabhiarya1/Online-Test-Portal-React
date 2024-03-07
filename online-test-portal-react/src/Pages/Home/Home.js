@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import questions from "../../Components/Questions/Questions";
+import React, { useContext, useState } from "react";
 import styles from "./Home.module.css";
+import QuestionContext from "../../QuestionContext";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  // const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+  const ctx = useContext(QuestionContext);
+  const questions = ctx.AllQuestions;
   const currentQuestion = questions[currentQuestionIndex];
+  // console.log(ctx.AllQuestions)
 
   const handlePrev = () => {
     setCurrentQuestionIndex((value) => {
@@ -19,6 +22,8 @@ const Home = () => {
 
   const handleNext = () => {
     setCurrentQuestionIndex((value) => {
+      ctx.visited(value);
+      ctx.submitted(value);
       if (value < questions.length - 1) {
         return value + 1;
       } else {
@@ -27,30 +32,66 @@ const Home = () => {
     });
   };
 
+  const handleSkip = () => {
+    setCurrentQuestionIndex((value) => {
+      ctx.visited(value);
+      if (value < questions.length - 1) {
+        return value + 1;
+      } else {
+        return 0;
+      }
+    });
+  };
+
+  const jumpHalder = (index) => {
+    ctx.visited(index);
+    setCurrentQuestionIndex(index);
+  };
+
+  const onChecked = (id) => {
+    // console.log(id);
+  };
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.questionContainer}>
           <div key={currentQuestion.id} className={styles.question}>
             <div className={styles.questionText}>
-              {currentQuestion.question}
+              Q{currentQuestion.id}. {currentQuestion.question}
             </div>
 
             <div className={styles.options}>
               <div className={styles.option}>
-                <input type="radio" name={currentQuestion.id} />
+                <input
+                  type="radio"
+                  name={currentQuestion.id}
+                  onChange={onChecked(currentQuestion.id)}
+                />
                 <label>{currentQuestion.options.opt1} </label>
               </div>
               <div className={styles.option}>
-                <input type="radio" name={currentQuestion.id} />
+                <input
+                  type="radio"
+                  name={currentQuestion.id}
+                  onChange={onChecked(currentQuestion.id)}
+                />
                 <label>{currentQuestion.options.opt2}</label>
               </div>
               <div className={styles.option}>
-                <input type="radio" name={currentQuestion.id} />
+                <input
+                  type="radio"
+                  name={currentQuestion.id}
+                  onChange={onChecked(currentQuestion.id)}
+                />
                 <label>{currentQuestion.options.opt3}</label>
               </div>
               <div className={styles.option}>
-                <input type="radio" name={currentQuestion.id} />
+                <input
+                  type="radio"
+                  name={currentQuestion.id}
+                  onChange={onChecked(currentQuestion.id)}
+                />
                 <label>{currentQuestion.options.opt4}</label>
               </div>
             </div>
@@ -66,10 +107,11 @@ const Home = () => {
             <button
               style={{ background: "orange" }}
               className={styles.button}
-              onClick={handleNext}
+              onClick={handleSkip}
             >
               Skip
             </button>
+
             <button
               style={{ background: "blue" }}
               className={styles.button}
@@ -81,7 +123,23 @@ const Home = () => {
         </div>
         <div className={styles.indicator}>
           {questions.map((current, index) => {
-            return <div className={styles.indicatorDiv}>{index + 1}</div>;
+            let backGroundColorOfDiv = "red";
+            if (current.visited && !current.submit) {
+              backGroundColorOfDiv = "gold";
+            } else if (current.visited && current.submit) {
+              backGroundColorOfDiv = "green";
+              // console.log("true")
+            }
+            return (
+              <div
+                key={index}
+                className={styles.indicatorDiv}
+                onClick={() => jumpHalder(index)}
+                style={{ backgroundColor: backGroundColorOfDiv }}
+              >
+                {index + 1}
+              </div>
+            );
           })}
         </div>
       </div>
