@@ -1,10 +1,9 @@
 import React from "react";
 import QuestionContext from "./QuestionContext";
-
 import questions from "./Components/Questions/Questions";
 
 const QuestionProvider = (props) => {
- let initialData = questions;
+  let initialData = questions;
   const questionVisitedHandler = (id) => {
     const newQuestionArray = initialData;
     newQuestionArray[id].visited = true;
@@ -17,12 +16,12 @@ const QuestionProvider = (props) => {
     newQuestionArray[id].visited = true;
     newQuestionArray[id].submit = true;
     initialData = newQuestionArray;
-  }
+  };
 
   const contextQuestions = {
     AllQuestions: initialData,
     visited: questionVisitedHandler,
-    submitted: submitQuestionHandler
+    submitted: submitQuestionHandler,
   };
 
   return (

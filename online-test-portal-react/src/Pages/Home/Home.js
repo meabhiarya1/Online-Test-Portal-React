@@ -3,6 +3,7 @@ import styles from "./Home.module.css";
 import QuestionContext from "../../QuestionContext";
 import Indicators from "../../Components/Indicators/Indicators";
 import Options from "../../Components/Options/Options";
+import Button from "../../Components/Buttons/Button";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -112,39 +113,37 @@ const Home = () => {
                 );
               })} */}
             </div>
-            
+
             <Options currentQuestion={currentQuestion} onChecked={onChecked} />
           </div>
 
           {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
-            <button
-              style={{ background: "green" }}
-              className={styles.button}
-              onClick={handlePrev}
-            >
-              Prev
-            </button>
-            <button
-              style={{ background: "orange" }}
-              className={styles.button}
-              onClick={handleSkip}
-            >
-              Skip
-            </button>
+            <div>
+              <Button
+                // className={styles.button}
+                handleFunc={handlePrev}
+              >
+                Prev
+              </Button>
+            </div>
+
+            <div style={{ background: "orange" }} className={styles.button} >
+              <Button handleFunc={handleSkip}>Skip</Button>
+            </div>
 
             {!selected ? (
-              <button style={{ background: "blue" }} className={styles.button}>
+              <Button style={{ background: "blue" }} className={styles.button}>
                 Next
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
                 style={{ background: "blue" }}
                 className={styles.button}
-                onClick={handleNext}
+                handleFunc={handleNext}
               >
                 Next
-              </button>
+              </Button>
             )}
           </div>
         </div>
