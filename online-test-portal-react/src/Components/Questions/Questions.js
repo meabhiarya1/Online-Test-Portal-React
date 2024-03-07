@@ -9,7 +9,7 @@ let questions = [
       opt3: "Audio digitizer ",
       opt4: "Synthesizer",
     },
-    visited: false,
+    visited: true,
     submit: false,
   },
 

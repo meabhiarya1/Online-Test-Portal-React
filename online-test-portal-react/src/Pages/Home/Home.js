@@ -1,14 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import QuestionContext from "../../QuestionContext";
+import Indicators from "../../Components/Indicators/Indicators";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [selected, setSelected] = useState(false);
 
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
   const currentQuestion = questions[currentQuestionIndex];
   // console.log(ctx.AllQuestions)
+
+  // useEffect(() => {
+  //   ctx.visited(0);
+  // }, []);
 
   const handlePrev = () => {
     setCurrentQuestionIndex((value) => {
@@ -24,6 +30,7 @@ const Home = () => {
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
       ctx.submitted(value);
+      setSelected(false);
       if (value < questions.length - 1) {
         return value + 1;
       } else {
@@ -43,13 +50,12 @@ const Home = () => {
     });
   };
 
-  const jumpHalder = (index) => {
-    ctx.visited(index);
-    setCurrentQuestionIndex(index);
+  const onChecked = (id) => {
+    setSelected(true);
   };
 
-  const onChecked = (id) => {
-    // console.log(id);
+  const changeStateHandler = (id) => {
+    setCurrentQuestionIndex(id);
   };
 
   return (
@@ -63,36 +69,46 @@ const Home = () => {
 
             <div className={styles.options}>
               <div className={styles.option}>
-                <input
-                  type="radio"
-                  name={currentQuestion.id}
-                  onChange={onChecked(currentQuestion.id)}
-                />
-                <label>{currentQuestion.options.opt1} </label>
+                <label>
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    onChange={onChecked}
+                  />
+                  {currentQuestion.options.opt1}{" "}
+                </label>
               </div>
               <div className={styles.option}>
-                <input
-                  type="radio"
-                  name={currentQuestion.id}
-                  onChange={onChecked(currentQuestion.id)}
-                />
-                <label>{currentQuestion.options.opt2}</label>
+                <label>
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    onChange={onChecked}
+                  />
+                  {currentQuestion.options.opt2}
+                </label>
               </div>
+
               <div className={styles.option}>
-                <input
-                  type="radio"
-                  name={currentQuestion.id}
-                  onChange={onChecked(currentQuestion.id)}
-                />
-                <label>{currentQuestion.options.opt3}</label>
+                <label>
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    onChange={onChecked}
+                  />
+                  {currentQuestion.options.opt3}
+                </label>
               </div>
+
               <div className={styles.option}>
-                <input
-                  type="radio"
-                  name={currentQuestion.id}
-                  onChange={onChecked(currentQuestion.id)}
-                />
-                <label>{currentQuestion.options.opt4}</label>
+                <label>
+                  <input
+                    type="radio"
+                    name={currentQuestion.id}
+                    onChange={onChecked}
+                  />
+                  {currentQuestion.options.opt4}
+                </label>
               </div>
             </div>
           </div>
@@ -112,36 +128,23 @@ const Home = () => {
               Skip
             </button>
 
-            <button
-              style={{ background: "blue" }}
-              className={styles.button}
-              onClick={handleNext}
-            >
-              Next
-            </button>
+            {!selected ? (
+              <button style={{ background: "blue" }} className={styles.button}>
+                Next
+              </button>
+            ) : (
+              <button
+                style={{ background: "blue" }}
+                className={styles.button}
+                onClick={handleNext}
+              >
+                Next
+              </button>
+            )}
           </div>
         </div>
-        <div className={styles.indicator}>
-          {questions.map((current, index) => {
-            let backGroundColorOfDiv = "red";
-            if (current.visited && !current.submit) {
-              backGroundColorOfDiv = "gold";
-            } else if (current.visited && current.submit) {
-              backGroundColorOfDiv = "green";
-              // console.log("true")
-            }
-            return (
-              <div
-                key={index}
-                className={styles.indicatorDiv}
-                onClick={() => jumpHalder(index)}
-                style={{ backgroundColor: backGroundColorOfDiv }}
-              >
-                {index + 1}
-              </div>
-            );
-          })}
-        </div>
+
+        <Indicators changeStateHandler={changeStateHandler} />
       </div>
     </>
   );

@@ -24,31 +24,6 @@
   font-weight: bold;
 }
 
-.indicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  width: 30%;
-  border: 2px solid grey;
-  border-radius: 5px;
-  padding: 35px;
-}
-
-.indicatorDiv {
-  display: flex;
-  width: 30px;
-  height: 30px;
-  margin: 5px;
-  /* background-color: red; */
-  border-radius: 5px;
-  justify-content: center;
-  color: white;
-  align-items: center;
-  padding: 1.5px;
-  font-weight: bold;
-}
-
 .options {
   display: flex;
   flex-wrap: wrap;
@@ -89,6 +64,14 @@
 
 .option {
   margin: 5px 0; /* Adjust margin for spacing between options */
+}
+
+.option input {
+  cursor: pointer;
+}
+
+.option label {
+  cursor: pointer;
 }
 
 /* Add media queries for smaller screens (optional) */

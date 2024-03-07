@@ -2,7 +2,8 @@ import { createContext } from "react";
 
 const QuestionContext = createContext({
   AllQuestions: [],
-  visited:()=>{}
+  visited: () => {},
+  submitted: () => {},
 });
 
 export default QuestionContext;
