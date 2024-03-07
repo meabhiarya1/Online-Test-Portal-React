@@ -1,0 +1,20 @@
+.options {
+    display: flex; /* Maintain flexbox for responsiveness */
+    flex-direction: column; /* Align radio buttons vertically */
+    justify-content: space-between; /* Distribute options evenly */
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .option {
+    margin: 5px 0; /* Adjust margin for spacing between options */
+  }
+  
+  .option input {
+    cursor: pointer;
+  }
+  
+  .option label {
+    cursor: pointer;
+  }
+  

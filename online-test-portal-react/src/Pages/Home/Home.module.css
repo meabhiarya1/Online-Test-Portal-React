@@ -24,17 +24,6 @@
   font-weight: bold;
 }
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  margin-top: 10px;
-}
-
-.option {
-  margin: 5px;
-}
-
 .buttonContainer {
   display: flex;
   justify-content: space-between;
@@ -55,24 +44,6 @@
   background-color: #f0f0f0;
 }
 
-.options {
-  display: flex; /* Maintain flexbox for responsiveness */
-  flex-direction: column; /* Align radio buttons vertically */
-  justify-content: space-between; /* Distribute options evenly */
-  margin-top: 10px;
-}
-
-.option {
-  margin: 5px 0; /* Adjust margin for spacing between options */
-}
-
-.option input {
-  cursor: pointer;
-}
-
-.option label {
-  cursor: pointer;
-}
 
 /* Add media queries for smaller screens (optional) */
 @media (max-width: 768px) {

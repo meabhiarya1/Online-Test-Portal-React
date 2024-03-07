@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./Home.module.css";
 import QuestionContext from "../../QuestionContext";
 import Indicators from "../../Components/Indicators/Indicators";
+import Options from "../../Components/Options/Options";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -10,11 +11,6 @@ const Home = () => {
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
   const currentQuestion = questions[currentQuestionIndex];
-  // console.log(ctx.AllQuestions)
-
-  // useEffect(() => {
-  //   ctx.visited(0);
-  // }, []);
 
   const handlePrev = () => {
     setCurrentQuestionIndex((value) => {
@@ -50,7 +46,7 @@ const Home = () => {
     });
   };
 
-  const onChecked = (id) => {
+  const onChecked = () => {
     setSelected(true);
   };
 
@@ -67,8 +63,8 @@ const Home = () => {
               Q{currentQuestion.id}. {currentQuestion.question}
             </div>
 
-            <div className={styles.options}>
-              <div className={styles.option}>
+            <div>
+              {/* <div className={styles.option}>
                 <label>
                   <input
                     type="radio"
@@ -77,8 +73,9 @@ const Home = () => {
                   />
                   {currentQuestion.options.opt1}{" "}
                 </label>
-              </div>
-              <div className={styles.option}>
+              </div> */}
+
+              {/* <div className={styles.option}>
                 <label>
                   <input
                     type="radio"
@@ -87,9 +84,9 @@ const Home = () => {
                   />
                   {currentQuestion.options.opt2}
                 </label>
-              </div>
+              </div> */}
 
-              <div className={styles.option}>
+              {/* <div className={styles.option}>
                 <label>
                   <input
                     type="radio"
@@ -98,20 +95,28 @@ const Home = () => {
                   />
                   {currentQuestion.options.opt3}
                 </label>
-              </div>
+              </div> */}
 
-              <div className={styles.option}>
-                <label>
-                  <input
-                    type="radio"
-                    name={currentQuestion.id}
-                    onChange={onChecked}
-                  />
-                  {currentQuestion.options.opt4}
-                </label>
-              </div>
+              {/* {Object.values(currentQuestion.options).map((opt, index) => {
+                return (
+                  <div className={styles.option} key={index}>
+                    <label>
+                      <input
+                        type="radio"
+                        name={currentQuestion.id}
+                        onChange={onChecked}
+                      />
+                      {opt}
+                    </label>
+                  </div>
+                );
+              })} */}
             </div>
+            
+            <Options currentQuestion={currentQuestion} onChecked={onChecked} />
           </div>
+
+          {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
             <button
               style={{ background: "green" }}
