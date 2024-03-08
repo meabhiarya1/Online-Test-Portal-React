@@ -1,45 +1,76 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: start;
-    text-align: start;
-    margin: 10rem;
-    min-height: 100vh; /* Ensure viewport height coverage */
-    padding: 1px;
-  }
-  
-  .instructions {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /* text-align: justify; */
-    margin-bottom: 1px;
-    border: solid black 1px;
-    margin-left: 1rem;
-  } 
+  width: 100%;
+  max-width: 800px; /* Set a maximum width for larger screens */
+  margin: 0 auto; /* Center the content */
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border: #007bff;
+}
 
-  .instructions h4 {
-    margin-left: 2rem;
-  } 
-  
-  .checkbox {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    justify-content: center;
+.instruc {
+  display: flex;
+  justify-content: center;
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 30px;
+  padding: 1rem;
+  background-color: antiquewhite;
+}
+
+.instructions {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+h4 {
+  margin-bottom: 10px;
+}
+
+/* Make checkbox and label align horizontally */
+.checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inputCheckbox {
+  cursor: pointer;
+  width: 1.6rem;
+  height: 1.3rem;
+}
+
+/* Style the label */
+label {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 768px) {
+  .instructions {
+    font-size: 14px;
   }
-  
+
   .button {
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 1rem;
-    transition: background-color 0.2s ease-in-out;
+    padding: 8px 16px;
   }
-  
-  .button:hover {
-    background-color: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+  .instructions {
+    font-size: 12px;
   }
-  
+}

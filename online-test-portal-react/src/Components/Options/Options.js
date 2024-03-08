@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Options.module.css";
 
 const Options = (props) => {
+
   return (
     <>
       <div className={styles.options}>
@@ -13,8 +14,9 @@ const Options = (props) => {
                   type="radio"
                   name={props.currentQuestion.id}
                   onChange={() => {
-                    props.onChecked(opt);
+                    props.onChecked(opt, index);
                   }}
+                  // checked={}
                 />
                 {opt}
               </label>

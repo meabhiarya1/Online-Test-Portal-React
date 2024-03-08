@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh; /* Ensure viewport height */
+    background-color: #000000;
+    color:rgb(255, 255, 255);
+    font-weight: bold;
+    font-family:'Courier New', Courier, monospace
+  }
+  
+  p {
+    font-size: 2rem;
+    margin: 0;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 768px) {
+    p {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    p {
+      font-size: 1.5rem;
+    }
+  }
+  

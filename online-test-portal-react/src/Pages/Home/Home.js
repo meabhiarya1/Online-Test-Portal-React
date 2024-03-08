@@ -4,12 +4,13 @@ import QuestionContext from "../../QuestionContext";
 import Indicators from "../../Components/Indicators/Indicators";
 import Options from "../../Components/Options/Options";
 import Button from "../../Components/Buttons/Button";
+import Timer from "../../Components/Timer/Timer";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selected, setSelected] = useState(false);
   const [results, setResult] = useState([]);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState();
   const [opt, setOpt] = useState("");
 
   const ctx = useContext(QuestionContext);
@@ -24,27 +25,27 @@ const Home = () => {
         return questions.length - 1;
       }
     });
-
-    const attemptted = questions.map((ques) => {
-      if (ques.submit) {
-        return results.map((answer) => {
-          return answer.quesAns;
-        });
-      }
-    });
-
-    console.log(attemptted);
-
-    // setValue(
-    //   questions.map((ques) => {
-    //     if (ques.submit) {
-    //       console.log("object")
-    //     }
-    //   })
-    // );
   };
 
   const handleNext = (opt) => {
+    setResult((result) => {
+      const existingQuestionIndex = result.findIndex(
+        (question) => question.quesNo === currentQuestionIndex + 1
+      );
+
+      if (existingQuestionIndex !== -1) {
+        return result.map((question, index) =>
+          index === existingQuestionIndex
+            ? { ...question, quesAns: opt, optNo: value }
+            : question
+        );
+      } else {
+        return [
+          ...result,
+          { quesNo: currentQuestionIndex + 1, quesAns: opt, optNo: value },
+        ];
+      }
+    });
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
       ctx.submitted(value);
@@ -55,25 +56,8 @@ const Home = () => {
         return 0;
       }
     });
-
-    setResult((result) => {
-      const existingQuestionIndex = result.findIndex(
-        (question) => question.quesNo === currentQuestionIndex + 1
-      );
-
-      if (existingQuestionIndex !== -1) {
-        return result.map((question, index) =>
-          index === existingQuestionIndex
-            ? { ...question, quesAns: opt }
-            : question
-        );
-      } else {
-        return [...result, { quesNo: currentQuestionIndex + 1, quesAns: opt }];
-      }
-    });
-    console.log(results);
   };
-
+  // console.log(results);
   const handleSkip = () => {
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
@@ -85,7 +69,8 @@ const Home = () => {
     });
   };
 
-  const onChecked = (opt) => {
+  const onChecked = (opt, index) => {
+    setValue(index);
     setOpt(opt);
     setSelected(true);
   };
@@ -96,6 +81,7 @@ const Home = () => {
 
   return (
     <>
+    <Timer/>
       <div className={styles.container}>
         <div className={styles.questionContainer}>
           <div key={currentQuestion.id} className={styles.question}>
@@ -156,7 +142,12 @@ const Home = () => {
             <Options
               currentQuestion={currentQuestion}
               onChecked={onChecked}
-             />
+              optNoIndex={results.map((result) => {
+                if (result.optNo) {
+                  return result.optNo;
+                }
+              })}
+            />
           </div>
 
           {/* buttons for prev skip next */}
