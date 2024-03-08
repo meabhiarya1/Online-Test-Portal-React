@@ -10,6 +10,7 @@ const Home = () => {
   const [selected, setSelected] = useState(false);
   const [results, setResult] = useState([]);
   const [value, setValue] = useState("");
+  const [opt, setOpt] = useState("");
 
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
@@ -43,7 +44,7 @@ const Home = () => {
     // );
   };
 
-  const handleNext = () => {
+  const handleNext = (opt) => {
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
       ctx.submitted(value);
@@ -54,20 +55,7 @@ const Home = () => {
         return 0;
       }
     });
-  };
 
-  const handleSkip = () => {
-    setCurrentQuestionIndex((value) => {
-      ctx.visited(value);
-      if (value < questions.length - 1) {
-        return value + 1;
-      } else {
-        return 0;
-      }
-    });
-  };
-
-  const onChecked = (opt) => {
     setResult((result) => {
       const existingQuestionIndex = result.findIndex(
         (question) => question.quesNo === currentQuestionIndex + 1
@@ -84,7 +72,21 @@ const Home = () => {
       }
     });
     console.log(results);
+  };
 
+  const handleSkip = () => {
+    setCurrentQuestionIndex((value) => {
+      ctx.visited(value);
+      if (value < questions.length - 1) {
+        return value + 1;
+      } else {
+        return 0;
+      }
+    });
+  };
+
+  const onChecked = (opt) => {
+    setOpt(opt);
     setSelected(true);
   };
 
@@ -151,7 +153,10 @@ const Home = () => {
               })} */}
             </div>
 
-            <Options currentQuestion={currentQuestion} onChecked={onChecked} />
+            <Options
+              currentQuestion={currentQuestion}
+              onChecked={onChecked}
+             />
           </div>
 
           {/* buttons for prev skip next */}
@@ -168,7 +173,13 @@ const Home = () => {
               {!selected ? (
                 <Button>Next</Button>
               ) : (
-                <Button handleFunc={handleNext}>Next</Button>
+                <Button
+                  handleFunc={() => {
+                    handleNext(opt);
+                  }}
+                >
+                  Next
+                </Button>
               )}
             </div>
           </div>
