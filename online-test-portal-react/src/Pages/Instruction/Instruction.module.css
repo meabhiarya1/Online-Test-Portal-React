@@ -5,7 +5,8 @@
   padding: 20px;
   justify-content: center;
   align-items: center;
-  border: #007bff;
+  border: 1px solid black;
+  margin-top: 5rem;
 }
 
 .instruc {
