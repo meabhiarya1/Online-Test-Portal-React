@@ -8,6 +8,8 @@ import Button from "../../Components/Buttons/Button";
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selected, setSelected] = useState(false);
+  const [results, setResult] = useState([]);
+  const [value, setValue] = useState("");
 
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
@@ -21,6 +23,24 @@ const Home = () => {
         return questions.length - 1;
       }
     });
+
+    const attemptted = questions.map((ques) => {
+      if (ques.submit) {
+        return results.map((answer) => {
+          return answer.quesAns;
+        });
+      }
+    });
+
+    console.log(attemptted);
+
+    // setValue(
+    //   questions.map((ques) => {
+    //     if (ques.submit) {
+    //       console.log("object")
+    //     }
+    //   })
+    // );
   };
 
   const handleNext = () => {
@@ -47,7 +67,24 @@ const Home = () => {
     });
   };
 
-  const onChecked = () => {
+  const onChecked = (opt) => {
+    setResult((result) => {
+      const existingQuestionIndex = result.findIndex(
+        (question) => question.quesNo === currentQuestionIndex + 1
+      );
+
+      if (existingQuestionIndex !== -1) {
+        return result.map((question, index) =>
+          index === existingQuestionIndex
+            ? { ...question, quesAns: opt }
+            : question
+        );
+      } else {
+        return [...result, { quesNo: currentQuestionIndex + 1, quesAns: opt }];
+      }
+    });
+    console.log(results);
+
     setSelected(true);
   };
 
@@ -119,7 +156,7 @@ const Home = () => {
 
           {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
-            <div style={{ background: "green  " }} className={styles.button}>
+            <div style={{ background: "green" }} className={styles.button}>
               <Button handleFunc={handlePrev}>Prev</Button>
             </div>
 

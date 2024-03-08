@@ -12,7 +12,9 @@ const Options = (props) => {
                 <input
                   type="radio"
                   name={props.currentQuestion.id}
-                  onChange={props.onChecked}
+                  onChange={() => {
+                    props.onChecked(opt);
+                  }}
                 />
                 {opt}
               </label>
