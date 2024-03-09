@@ -30,10 +30,11 @@ const Home = () => {
   };
 
   const handleNext = (opt) => {
-    const existingQuestionIndex = currentQuestionIndex + 1;
+    console.log("object");
+    const existingQuestionIndex = currentQuestionIndex;
     setResult((result) => {
       const existingQuestionIndex = result.findIndex(
-        (question) => question.quesNo === currentQuestionIndex + 1
+        (question) => question.quesNo === currentQuestionIndex
       );
 
       if (existingQuestionIndex !== -1) {
@@ -45,7 +46,7 @@ const Home = () => {
       } else {
         return [
           ...result,
-          { quesNo: currentQuestionIndex + 1, quesAns: opt, optNo: value },
+          { quesNo: currentQuestionIndex, quesAns: opt, optNo: value },
         ];
       }
     });
@@ -59,9 +60,11 @@ const Home = () => {
         return 0;
       }
     });
-  
+
     ctx.modifyAllQuestions(existingQuestionIndex, opt, value);
   };
+
+  // console.log(results);
 
   const handleSkip = () => {
     setCurrentQuestionIndex((value) => {
@@ -75,7 +78,10 @@ const Home = () => {
   };
 
   const onChecked = (opt, index) => {
-    setSelected(true);
+    // console.log(opt, index);
+    if (opt && index + 1) {
+      setSelected(true);
+    }
     setValue(index);
     setOpt(opt);
   };
@@ -88,6 +94,8 @@ const Home = () => {
     e.preventDefault();
     navigate("/finalsubmit");
   };
+
+  // console.log(currentQuestion)
 
   return (
     <>
@@ -102,7 +110,7 @@ const Home = () => {
         <div className={styles.questionContainer}>
           <div key={currentQuestion.id} className={styles.question}>
             <div className={styles.questionText}>
-              Q{currentQuestion.id}. {currentQuestion.question}
+              Q{currentQuestion.id+1}. {currentQuestion.question}
             </div>
 
             <div>
@@ -167,7 +175,7 @@ const Home = () => {
           {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
             <div style={{ background: "green" }} className={styles.button}>
-              <Button handleFunc={handlePrev}>Prev</Button>
+              <Button handleFunc={handlePrev} >Prev</Button>
             </div>
 
             <div style={{ background: "orange" }} className={styles.button}>

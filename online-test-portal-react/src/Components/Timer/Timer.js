@@ -33,7 +33,7 @@ const Timer = () => {
 
   return (
     <div className={styles.container}>
-      <p>Time: {formattedTime()}</p>
+      <p>Timer: {formattedTime()}</p>
     </div>
   );
 };

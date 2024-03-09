@@ -72,13 +72,36 @@
     max-width: 90%;
   }
 
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .button {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .submitButtonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .submitButton {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(85, 85, 245);
-    font-weight: 200;
+    font-weight: 300;
     color: white;
+    text-align: center;
     margin-top: 1rem;
     width: 30%;
     border-radius: 5px;
@@ -95,7 +118,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .container {
     max-width: 90%;
   }
@@ -106,5 +129,8 @@
 
   .button {
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

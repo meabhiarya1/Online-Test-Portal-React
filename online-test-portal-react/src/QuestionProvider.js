@@ -33,6 +33,7 @@ const QuestionProvider = (props) => {
     };
     newQuestionArray[id].answer = obj;
     updatedData = newQuestionArray;
+    console.log(updatedData); 
   };
 
   const contextQuestions = {
