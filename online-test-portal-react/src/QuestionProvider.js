@@ -4,24 +4,42 @@ import questions from "./Components/Questions/Questions";
 
 const QuestionProvider = (props) => {
   let initialData = questions;
+
+  let updatedData = initialData.map((item) => {
+    return { ...item, answer: null };
+  });
+
+  // console.log(updatedData);
+
   const questionVisitedHandler = (id) => {
-    const newQuestionArray = initialData;
+    const newQuestionArray = updatedData;
     newQuestionArray[id].visited = true;
-    initialData = newQuestionArray;
+    updatedData = newQuestionArray;
     // console.log(initialData)
   };
 
   const submitQuestionHandler = (id) => {
-    const newQuestionArray = initialData;
+    const newQuestionArray = updatedData;
     newQuestionArray[id].visited = true;
     newQuestionArray[id].submit = true;
-    initialData = newQuestionArray;
+    updatedData = newQuestionArray;
+  };
+
+  const submitAnswerHandler = (id, ans, selectedOption) => {
+    const newQuestionArray = updatedData;
+    const obj = {
+      ansNo: selectedOption,
+      ansValue: ans,
+    };
+    newQuestionArray[id].answer = obj;
+    updatedData = newQuestionArray;
   };
 
   const contextQuestions = {
-    AllQuestions: initialData,
+    AllQuestions: updatedData,
     visited: questionVisitedHandler,
     submitted: submitQuestionHandler,
+    modifyAllQuestions: submitAnswerHandler,
   };
 
   return (

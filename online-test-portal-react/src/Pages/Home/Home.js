@@ -5,6 +5,7 @@ import Indicators from "../../Components/Indicators/Indicators";
 import Options from "../../Components/Options/Options";
 import Button from "../../Components/Buttons/Button";
 import Timer from "../../Components/Timer/Timer";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -12,6 +13,7 @@ const Home = () => {
   const [results, setResult] = useState([]);
   const [value, setValue] = useState();
   const [opt, setOpt] = useState("");
+  const navigate = useNavigate();
 
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
@@ -28,6 +30,7 @@ const Home = () => {
   };
 
   const handleNext = (opt) => {
+    const existingQuestionIndex = currentQuestionIndex + 1;
     setResult((result) => {
       const existingQuestionIndex = result.findIndex(
         (question) => question.quesNo === currentQuestionIndex + 1
@@ -56,8 +59,10 @@ const Home = () => {
         return 0;
       }
     });
+  
+    ctx.modifyAllQuestions(existingQuestionIndex, opt, value);
   };
-  // console.log(results);
+
   const handleSkip = () => {
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
@@ -70,18 +75,29 @@ const Home = () => {
   };
 
   const onChecked = (opt, index) => {
+    setSelected(true);
     setValue(index);
     setOpt(opt);
-    setSelected(true);
   };
 
   const changeStateHandler = (id) => {
     setCurrentQuestionIndex(id);
   };
 
+  const handleFinalSubmit = (e) => {
+    e.preventDefault();
+    navigate("/finalsubmit");
+  };
+
   return (
     <>
-    <Timer/>
+      <Timer />
+      <div className={styles.submitButtonDiv}>
+        <div className={styles.submitButton}>
+          <Button handleFunc={handleFinalSubmit}>Final Submit</Button>
+        </div>
+      </div>
+
       <div className={styles.container}>
         <div className={styles.questionContainer}>
           <div key={currentQuestion.id} className={styles.question}>
@@ -143,9 +159,7 @@ const Home = () => {
               currentQuestion={currentQuestion}
               onChecked={onChecked}
               optNoIndex={results.map((result) => {
-                if (result.optNo) {
-                  return result.optNo;
-                }
+                return result.optNo;
               })}
             />
           </div>
@@ -175,7 +189,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
         <Indicators changeStateHandler={changeStateHandler} />
       </div>
     </>
