@@ -5,7 +5,8 @@ import Indicators from "../../Components/Indicators/Indicators";
 import Options from "../../Components/Options/Options";
 import Button from "../../Components/Buttons/Button";
 import Timer from "../../Components/Timer/Timer";
-import { useNavigate } from "react-router-dom";
+import Modal from "../../Components/Modal/Modal";
+import ModalButton from "../../Components/Buttons/ModalButton";
 
 const Home = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -13,7 +14,6 @@ const Home = () => {
   const [results, setResult] = useState([]);
   const [value, setValue] = useState();
   const [opt, setOpt] = useState("");
-  const navigate = useNavigate();
 
   const ctx = useContext(QuestionContext);
   const questions = ctx.AllQuestions;
@@ -65,7 +65,6 @@ const Home = () => {
   };
 
   // console.log(results);
-
   const handleSkip = () => {
     setCurrentQuestionIndex((value) => {
       ctx.visited(value);
@@ -90,27 +89,18 @@ const Home = () => {
     setCurrentQuestionIndex(id);
   };
 
-  const handleFinalSubmit = (e) => {
-    e.preventDefault();
-    navigate("/finalsubmit");
-  };
-
   // console.log(currentQuestion)
 
   return (
     <>
+      <Modal />
       <Timer />
-      <div className={styles.submitButtonDiv}>
-        <div className={styles.submitButton}>
-          <Button handleFunc={handleFinalSubmit}>Final Submit</Button>
-        </div>
-      </div>
-
+      <ModalButton />
       <div className={styles.container}>
         <div className={styles.questionContainer}>
           <div key={currentQuestion.id} className={styles.question}>
             <div className={styles.questionText}>
-              Q{currentQuestion.id+1}. {currentQuestion.question}
+              Q{currentQuestion.id + 1}. {currentQuestion.question}
             </div>
 
             <div>
@@ -175,7 +165,7 @@ const Home = () => {
           {/* buttons for prev skip next */}
           <div className={styles.buttonContainer}>
             <div style={{ background: "green" }} className={styles.button}>
-              <Button handleFunc={handlePrev} >Prev</Button>
+              <Button handleFunc={handlePrev}>Prev</Button>
             </div>
 
             <div style={{ background: "orange" }} className={styles.button}>

@@ -7,6 +7,7 @@
   border: 2px solid grey;
   border-radius: 5px;
   padding: 35px;
+  transition: width 0.2s ease-in-out;
 }
 
 .indicatorDiv {
@@ -22,4 +23,5 @@
   padding: 1.5px;
   font-weight: bold;
   cursor: pointer;
+  transition: width 0.2s ease-in-out;
 }

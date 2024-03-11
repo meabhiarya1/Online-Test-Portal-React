@@ -5,6 +5,8 @@ const Button = (props) => {
     <div onClick={props.handleFunc} >
       {props.children}
     </div>
+
+
   );
 };
 

@@ -3,6 +3,7 @@
   padding: 20px;
   margin: 0 auto;
   justify-content: space-evenly;
+  transition: width 0.5s ease-in-out;
 }
 
 .questionContainer {
@@ -37,7 +38,6 @@
   border-radius: 5px;
   cursor: pointer;
   color: white;
-  transition: background-color 0.2s ease-in-out;
 }
 
 .submitButtonDiv {
@@ -65,11 +65,11 @@
   background-color: #f0f0f0;
 }
 
-/* Add media queries for smaller screens (optional) */
 
 @media (max-width: 900px) {
   .container {
     max-width: 90%;
+    transition: width 0.2s ease-in-out;
   }
 
   .buttonContainer {
@@ -85,7 +85,10 @@
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    transition: background-color 0.2s ease-in-out;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .submitButtonDiv {
@@ -106,7 +109,7 @@
     width: 30%;
     border-radius: 5px;
     padding: 10px;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 
   .buttonContainer {
@@ -115,22 +118,5 @@
 
   .button {
     margin-bottom: 10px;
-  }
-}
-
-@media (max-width: 900px) {
-  .container {
-    max-width: 90%;
-  }
-
-  .buttonContainer {
-    flex-direction: column;
-  }
-
-  .button {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }

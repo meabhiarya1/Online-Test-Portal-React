@@ -1,12 +1,13 @@
 .container {
   width: 100%;
-  max-width: 800px; /* Set a maximum width for larger screens */
+  max-width: 700px;
   margin: 0 auto; /* Center the content */
   padding: 20px;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
   margin-top: 5rem;
+  border-radius: 5px;
 }
 
 .instruc {
@@ -17,16 +18,19 @@
   margin-bottom: 30px;
   padding: 1rem;
   background-color: antiquewhite;
+  border-radius: 5px;
 }
 
 .instructions {
-  font-size: 16px;
+  font-size: 10px;
   line-height: 1;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-h4 {
-  margin-bottom: 10px;
+h5 {
+  margin-bottom: 30px;
+  font-size: small;
+  word-wrap: normal;
 }
 
 /* Make checkbox and label align horizontally */

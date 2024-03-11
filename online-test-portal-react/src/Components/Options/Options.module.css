@@ -7,10 +7,11 @@
   }
   
   .option {
-    margin: 5px 0; /* Adjust margin for spacing between options */
+    margin: 5px;
   }
   
   .option input {
+    margin-right: 5px;
     cursor: pointer;
   }
   
